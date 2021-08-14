@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import CountryCard from './CountryCard'
+import axios from 'axios';
 
 const SearchCountries = () => {
 
@@ -9,17 +10,18 @@ const SearchCountries = () => {
 
     const searchCountries = async (e) => {
       e.preventDefault();
-
-      const url = `https://restcountries.eu/rest/v2/name/${query}`;
-
+      
+      // API URL
+      const url = `https://restcountries.eu/rest/v2/all`;
+    
       try{
-        const results = await fetch(url);
-        const data = await results.json();
-        console.log(data.results);
-        
-        setCountries(data.results)
+        const { data } = await axios.get(url)
+
+        setCountries(data)
+
+        console.log(`this is countries ${countries} and data ${data}`)
       }catch(err){
-        console.log(err)
+        console.log(`this is error ${err}`)
       }
     }
 
@@ -28,7 +30,7 @@ const SearchCountries = () => {
       <form className="form" onSubmit={searchCountries}>
         <label className="label" htmlFor="query">Country Name</label>
         <input
-          className="form-control"
+          // className="form-control"
           type="text"
           name="query"
           placeholder="Search for a country..."
@@ -37,8 +39,13 @@ const SearchCountries = () => {
         />
         <button className="button" type="submit">Search</button>
       </form>
-      <div className="country-list">
-        { countries.filter(country => country.alpha3Code).map( country => (
+      {/* <div>
+        { countries.map( country => (
+          <CountryCard country={country} />
+        ))}
+      </div> */}
+      <div>
+        { countries.map( country => (
           <CountryCard country={country} key={country.id}/>
         ))}
       </div>
