@@ -46,7 +46,7 @@ const SearchCountries = () => {
       </div> */}
       <div>
         { countries.map( country => (
-          <CountryCard country={country} key={country.id}/>
+          <CountryCard country={country} key={country.alpha3Code}/>
         ))}
       </div>
     </>
