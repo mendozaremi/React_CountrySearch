@@ -1,13 +1,14 @@
-import './App.css';
-import SearchCountries from './Components/SearchCountries';
+import Countries from './Components/Countries';
 import Header from "./UI/Header"
+import filter from './Components/Filter'
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <SearchCountries />
-    </div>
+    <>
+      <Header />
+      <Filter />
+      <Countries />
+    </>
   );
 }
 
