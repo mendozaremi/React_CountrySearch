@@ -1,19 +1,39 @@
 import React from 'react'
 
 const Filter = () => {
+    window.addEventListener('DOMContentLoaded', () => {
+
+    const search = document.getElementById('search')
+
+    search.addEventListener('click', (e) => {
+        const { value } = e.target
+
+        const countryName = document.querySelectorAll('.country-name')
+
+        countryName.forEach((name) => {
+            if(name.innerText.toLowerCase().includes(value.toLowerCase())) {
+                // if name matches any of input then display them as block
+                name.parentElement.parentElement.style.display = 'block'
+            }
+            else {
+                name.parentElement.parentElement.style.display = 'none'
+            }
+        })
+    })
+})
     return (
-        <div>
-            <section className="filter">
-                <form action="" className="form-control">
+        <>
+                <form className="form" id="form">
                     <input 
                     type="search" 
+                    name="search"
                     id="search" 
-                    placeholder="Search for a country"
+                    placeholder="Search Country"
                     />
-                </form>
+               
 
-                <div className="region-filter">
-                    <select name="select" id="select" className="select">
+                <div className="select">
+                    <select name="select" id="select">
                         <option value="Filter by region">Filter by region</option>
                         <option value="Africa">Africa</option>
                         <option value="America">America</option>
@@ -22,9 +42,8 @@ const Filter = () => {
                         <option value="Oceania">Oceania</option>
                     </select>
                 </div>
-            </section>
-
-        </div>
+            </form>
+        </>
     )
 }
 

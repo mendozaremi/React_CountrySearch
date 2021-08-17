@@ -1,0 +1,42 @@
+import React from 'react'
+
+const Header = () => {
+
+    const changeTheme = () => {
+        const btnMoon = document.querySelector('.btn-moon')
+        const header = document.querySelector('.header')
+        const details = document.querySelectorAll('.details')
+        const uls = document.querySelectorAll('ul')
+
+        btnMoon.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme')
+            header.classList.toggle('light-theme')
+
+            details.forEach((detail) => {
+                detail.classList.toggle('light-theme')
+            })
+
+            uls.forEach((ul) => {
+                ul.classList.toggle('light-theme')
+            })
+        })
+    }
+    
+    return (
+        <>
+        <header className="header">
+            <div>
+              <h1>Where in the World?</h1>
+            </div>
+
+            <div>
+                <button className="btn-moon" onClick={() => changeTheme()}>
+                  <i className="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+        </>
+    )
+}
+
+export default Header
